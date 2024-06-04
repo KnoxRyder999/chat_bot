@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from '@mui/material';
 import { FC, FormEvent } from 'react';
+import { toast } from 'react-hot-toast';
 import { CiLogin } from 'react-icons/ci';
 import robot from '../../public/robot.svg';
 import { InputForm } from '../components/shared/InputForm';
@@ -12,12 +13,19 @@ export const Login: FC<LoginProps> = () => {
   // const [password, setPassword] = useState<string>('');
   const auth = useAuth();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
-    auth?.login(email, password);
+    try {
+      toast.loading('Logging in!', { id: 'login' });
+      await auth?.login(email, password);
+      toast.success('You are logged successfully!', { id: 'login' });
+    } catch (error) {
+      console.error('🙀 ~ handleSubmit ~ error:', error);
+      toast.error('Login failed', { id: 'login' });
+    }
     console.log('logged?: ', auth?.isLoggedIn);
   };
 

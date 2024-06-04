@@ -52,7 +52,8 @@ export const userSignup = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       message: 'A new user has been created',
-      id: user._id.toString(),
+      name: user.name,
+      email: user.email,
     });
   } catch (error) {
     console.log('🙀 ~ getAllUsers ~ error:', error);
