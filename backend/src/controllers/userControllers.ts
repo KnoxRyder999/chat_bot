@@ -98,7 +98,32 @@ export const userLogin = async (req: Request, res: Response) => {
       email: user.email,
     });
   } catch (error) {
-    console.log('🙀 ~ getAllUsers ~ error:', error);
+    console.log('🙀 ~ userLogin ~ ERROR:', error);
+    return res
+      .status(500)
+      .json({ message: 'Error during login', cause: error });
+  }
+};
+
+export const verifyUser = async (req: Request, res: Response) => {
+  try {
+    // User Token verification
+    const user = await User.findById(res.locals.jwtData.id);
+    if (!user)
+      return res.status(401).send('User not registered OR Token malfunctioned');
+
+    console.log('🚀 ~ verifyUser ~ user:', user);
+
+    if (user._id.toString() !== res.locals.jwtData.id)
+      return res.status(403).send("Permissions didn't match");
+
+    return res.status(200).json({
+      message: 'User Token is verified ✅',
+      name: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    console.log('🙀 ~ verifyUser ~ ERROR:', error);
     return res
       .status(500)
       .json({ message: 'Error during signup', cause: error });
