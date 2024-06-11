@@ -23,12 +23,7 @@ body {
   letter-spacing: 1px;
 }
 
-.MuiOutlinedInput-input-root.Mui-focused,
-.MuiOutlinedInput-notchedOutline {
+.MuiOutlinedInput-input-root.Mui-focused, .MuiOutlinedInput-notchedOutline {
   border-color: white !important;
-  background-color: rgba(33, 33, 33, 0.175)
+  background-color: rgba(33, 33, 33, 0.033)
 }
-
-/* .input:-internal-autofill-selected {
-
-} */

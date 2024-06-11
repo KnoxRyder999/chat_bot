@@ -1,10 +1,11 @@
 import { Box, Button, Typography } from '@mui/material';
-import { FC, FormEvent } from 'react';
+import { FC, FormEvent, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { CiLogin } from 'react-icons/ci';
-import robot from '../../public/robot.svg';
+import { useNavigate } from 'react-router-dom';
 import { InputForm } from '../components/shared/InputForm';
 import { useAuth } from '../context/AuthContext';
+import robot from '/robot.svg';
 
 interface LoginProps {}
 
@@ -12,6 +13,7 @@ export const Login: FC<LoginProps> = () => {
   // const [email, setEmail] = useState<string>('');
   // const [password, setPassword] = useState<string>('');
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,8 +28,13 @@ export const Login: FC<LoginProps> = () => {
       console.error('🙀 ~ handleSubmit ~ error:', error);
       toast.error('Login failed', { id: 'login' });
     }
-    console.log('logged?: ', auth?.isLoggedIn);
   };
+
+  useEffect(() => {
+    if (auth?.user) {
+      return navigate('/chat');
+    }
+  }, [auth]);
 
   return (
     <Box
@@ -60,7 +67,6 @@ export const Login: FC<LoginProps> = () => {
           Sign in
         </Typography>
         <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          {/* <form onSubmit={(e) => handleSubmit(e)}> */}
           <InputForm type='email' name='email' label='Email' />
           <InputForm type='password' name='password' label='Password' />
           <Button
@@ -72,7 +78,6 @@ export const Login: FC<LoginProps> = () => {
           >
             Login
           </Button>
-          {/* </form> */}
         </Box>
       </Box>
     </Box>

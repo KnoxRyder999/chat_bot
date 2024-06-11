@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import openai from '../../../public/openai.svg';
+import openai from '/openai.svg';
 
 interface LogoProps {}
 

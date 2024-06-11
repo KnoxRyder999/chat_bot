@@ -18,6 +18,11 @@ const theme = createTheme({
     fontFamily: 'Roboto Slab, serif',
     allVariants: { color: 'white' },
   },
+  palette: {
+    primary: {
+      main: '#0e11ce',
+    },
+  },
 });
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -27,7 +32,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Toaster />
           <App />
         </ThemeProvider>
-        ç{' '}
       </BrowserRouter>
     </AuthProvider>
   </React.StrictMode>

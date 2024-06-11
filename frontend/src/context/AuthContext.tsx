@@ -14,7 +14,7 @@ import {
 type User = {
   name: string;
   email: string;
-  password: string;
+  password?: string;
 };
 
 type UserAuth = {
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser({
           email: data.email,
           name: data.name,
-          password: data.password,
+          // password: data.password,
         });
         setIsLoggedIn(true);
 
@@ -61,8 +61,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         password: data.password,
       });
       setIsLoggedIn(true);
-
-      // setUser();
     }
   };
   const signup = async (name: string, email: string, password: string) => {};
