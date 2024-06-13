@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import { Header } from './components/Header';
 import { useAuth } from './context/AuthContext';
 import { Chat } from './pages/Chat';
@@ -7,6 +6,7 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { NotFound } from './pages/NotFound';
 import { Signup } from './pages/Signup';
+import './styles/App.css';
 
 function App() {
   console.log(useAuth()?.isLoggedIn);
