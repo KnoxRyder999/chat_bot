@@ -10,8 +10,6 @@ import robot from '/robot.svg';
 interface LoginProps {}
 
 export const Login: FC<LoginProps> = () => {
-  // const [email, setEmail] = useState<string>('');
-  // const [password, setPassword] = useState<string>('');
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -71,6 +69,7 @@ export const Login: FC<LoginProps> = () => {
           <InputForm type='password' name='password' label='Password' />
           <Button
             type='submit'
+            // color='secondary'
             fullWidth
             variant='contained'
             sx={{ mt: 3, mb: 2 }}
