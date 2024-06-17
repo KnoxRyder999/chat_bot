@@ -36,8 +36,8 @@ export const Login: FC<LoginProps> = () => {
 
   return (
     <Box
-      height={'100%'}
-      width={'100%'}
+      height='100%'
+      width='100%'
       display='flex'
       flex={1}
       justifyContent='center'
@@ -56,7 +56,6 @@ export const Login: FC<LoginProps> = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          // gap: 8,
           mt: 8,
           paddingX: 4,
         }}
@@ -69,7 +68,6 @@ export const Login: FC<LoginProps> = () => {
           <InputForm type='password' name='password' label='Password' />
           <Button
             type='submit'
-            // color='secondary'
             fullWidth
             variant='contained'
             sx={{ mt: 3, mb: 2 }}

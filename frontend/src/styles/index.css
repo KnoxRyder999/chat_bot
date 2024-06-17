@@ -15,7 +15,7 @@ body {
 
 .nav-link {
   font-weight: 600;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   margin: 0 8px;
   text-decoration: none;
   padding: 8px 24px;
