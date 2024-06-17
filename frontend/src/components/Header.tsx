@@ -1,6 +1,7 @@
 import { AppBar, Toolbar } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Logo } from './shared/Logo';
 import { NavigationLink } from './shared/NavigationLink';
@@ -9,6 +10,7 @@ interface HeaderProps {}
 
 export const Header: FC<HeaderProps> = ({}) => {
   const theme = useTheme();
+  const location = useLocation();
 
   const auth = useAuth();
   return (
@@ -18,12 +20,14 @@ export const Header: FC<HeaderProps> = ({}) => {
         <div>
           {auth?.isLoggedIn ? (
             <>
-              <NavigationLink
-                bg={theme.palette.primary.light}
-                textColor='white'
-                to={'/chat'}
-                text='Go to Chat'
-              />
+              {location.pathname !== '/chat' && (
+                <NavigationLink
+                  bg={theme.palette.primary.light}
+                  textColor='white'
+                  to={'/chat'}
+                  text='Go to Chat'
+                />
+              )}
               <NavigationLink
                 bg={theme.palette.secondary.dark}
                 textColor='white'

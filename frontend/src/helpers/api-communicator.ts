@@ -39,3 +39,8 @@ export const logoutUser = async () => {
   const data = await res.data;
   return data;
 };
+
+export const getUserChats = async () => {
+  const res = await axios.get('/to-be-defined');
+  // ...
+};
