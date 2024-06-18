@@ -1,5 +1,8 @@
 import { Router } from 'express';
-import { generateChatCompletion } from '../controllers/chatcontrollers.js';
+import {
+  generateChatCompletion,
+  getUserChats,
+} from '../controllers/chatControllers.js';
 import { verifyToken } from '../utils/tokenManager.js';
 import { chatCompletionValidator, validate } from '../utils/validators.js';
 
@@ -11,5 +14,6 @@ chatRoutes.post(
   verifyToken,
   generateChatCompletion
 );
+chatRoutes.get('/all-chats', verifyToken, getUserChats);
 
 export default chatRoutes;

@@ -127,11 +127,7 @@ export const verifyUser = async (req: Request, res: Response) => {
   }
 };
 
-export const userLogout = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const userLogout = async (req: Request, res: Response) => {
   try {
     //user token check
     const user = await User.findById(res.locals.jwtData.id);
