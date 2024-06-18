@@ -1,24 +1,111 @@
-import { Avatar, Box, Button, Typography } from '@mui/material';
+import { Avatar, Box, Button, IconButton, Typography } from '@mui/material';
 import { grey, red } from '@mui/material/colors';
-import { useLayoutEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { useRef, useState } from 'react';
+import { IoMdSend } from 'react-icons/io';
+import { ChatItem } from '../components/ChatItem';
 import { useAuth } from '../context/AuthContext';
+import { sendChatRequest } from '../helpers/api-communicator';
+import { Message } from '../types/Message';
 
-type Message = {
-  role: 'user' | 'assistant';
-  content: string;
-};
+// to be erase ...
+const testMessages = [
+  {
+    role: 'user',
+    content:
+      'Kris: Okay the ProMazda race at Laguna Seca is about to start, wish me luck! Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit.',
+  },
+  {
+    role: 'assistant',
+    content:
+      'Good luck, Kris! You got this! Remember to stay focused and keep your cool.',
+  },
+  {
+    role: 'user',
+    content: 'Lakel: Where is this race?',
+  },
+  {
+    role: 'assistant',
+    content: 'This race is taking place at Laguna Seca, Lakel.',
+  },
+  {
+    role: 'user',
+    content: 'Kruvinas: hey I just got here, whats going on?',
+  },
+  {
+    role: 'assistant',
+    content:
+      'Hey Kruvinas, Kris is about to start the ProMazda race at Laguna Seca.',
+  },
+  {
+    role: 'system',
+    content:
+      'The race ended and now we are racing Lotus 79 cars at Summit Point',
+  },
+  {
+    role: 'user',
+    content: 'Lakel: Where are we now?',
+  },
+  {
+    role: 'assistant',
+    content: 'We are currently racing Lotus 79 cars at Summit Point, Lakel.',
+  },
+  {
+    role: 'user',
+    content: 'QTBear: what has Lakel been asking about?',
+  },
+  {
+    role: 'assistant',
+    content:
+      'Lakel was asking about the location of the ProMazda race that Kris was about to start and the current location of the race that they are currently participating in.',
+  },
+  {
+    role: 'user',
+    content: 'QTBear: who are you?',
+  },
+  {
+    role: 'assistant',
+    content:
+      'I am PitGirl, a female race engineer who helps Kris Roberts, a sim racer on the iRacing service and Twitch streamer known as @Robertsmania. My job is to assist Kris in any way possible during his races.',
+  },
+  {
+    role: 'user',
+    content: 'Lakel: What is iRacing and can you use VR with it?',
+  },
+];
 
 export const Chat = ({}) => {
   const auth = useAuth();
-  const [chats, setChats] = useState<Message[]>([]);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [chats, setChats] = useState<Message[]>([testMessages]);
 
-  useLayoutEffect(() => {
-    if (auth?.isLoggedIn && auth.user) {
-      toast.loading('Loading Chats', { id: 'loadChats' });
-      // getUserChats();
+  const handleSubmit = async () => {
+    const content = inputRef.current?.value as string;
+    console.log('🚀 ~ handleSubmit ~ content:', content);
+
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = '';
     }
-  });
+
+    const newMessage: Message = { role: 'user', content };
+    setChats((prev) => [...prev, newMessage]);
+    const chatData = await sendChatRequest(content);
+    setChats([...chatData.chats]);
+  };
+
+  // useLayoutEffect(() => {
+  //   if (auth?.isLoggedIn && auth.user) {
+  //     toast.loading('Loading Chats', { id: 'loadChats' });
+  //     getUserChats()
+  //       .then((data) => {
+  //         setChats([...data.chats]);
+  //         toast.success('Successfully loaded chats', { id: 'loadChats' });
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         toast.error('Loading Failed', { id: 'loadChats' });
+  //       });
+  //   }
+  // });
 
   return (
     <Box
@@ -119,8 +206,36 @@ export const Chat = ({}) => {
             scrollBehavior: 'smooth',
           }}
         >
-          chats...
+          {chats.map((chat, index) => {
+            return <ChatItem key={index} message={chat} />;
+          })}
         </Box>
+        <div
+          style={{
+            width: '100%',
+            borderRadius: 8,
+            backgroundColor: 'rgb(17,27,39)',
+            display: 'flex',
+            margin: 'auto',
+          }}
+        >
+          <input
+            ref={inputRef}
+            type='text'
+            style={{
+              width: '100%',
+              backgroundColor: 'transparent',
+              padding: '30px',
+              border: 'none',
+              outline: 'none',
+              color: 'white',
+              fontSize: '20px',
+            }}
+          />
+          <IconButton onClick={handleSubmit} sx={{ color: 'white', mx: 1 }}>
+            <IoMdSend />
+          </IconButton>
+        </div>
       </Box>
     </Box>
   );

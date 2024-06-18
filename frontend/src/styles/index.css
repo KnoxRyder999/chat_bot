@@ -27,3 +27,34 @@ body {
   border-color: white !important;
   background-color: rgba(33, 33, 33, 0.033)
 }
+
+.chat-item {
+  display: flex;
+  /* align-items: center; */
+  padding: 8px;
+  background-color: red;
+  gap: 12px;
+  /* border-radius: 2px; */
+  margin:  1px 0;
+}
+
+.chat-item.assistant{
+  background-color: #64117D;
+}
+
+.chat-item.user{
+  background-color: #22443dff;
+}
+
+.chat-item.assistant img{
+  width: 28px;
+}
+
+.avatar-assistant {
+  width: 28px;
+  background-color: white;
+}
+
+.avatar-user {
+  background-color: purple;
+}
