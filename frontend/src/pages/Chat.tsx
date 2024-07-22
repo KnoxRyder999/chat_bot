@@ -8,79 +8,68 @@ import { sendChatRequest } from '../helpers/api-communicator';
 import { Message } from '../types/Message';
 
 // to be erase ...
-const testMessages = [
+const testMessages: Message[] = [
   {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'user',
-    content:
-      'Kris: Okay the ProMazda race at Laguna Seca is about to start, wish me luck! Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit.',
+    content: 'Could you give me an example of Javascript?',
+    // _id: '66758d7a1efed38e8ef7de57',
   },
   {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'assistant',
     content:
-      'Good luck, Kris! You got this! Remember to stay focused and keep your cool.',
+      'Sure! Here is an example of a simple Javascript code that creates an alert box when a button is clicked:\n\n```\n<!DOCTYPE html>\n<html>\n<body>\n\n<h2>Click the button to display an alert box</h2>\n\n<button onclick="myFunction()">Click me</button>\n\n<script>\nfunction myFunction() {\n  alert("Hello! This is an alert box!");\n}\n</script>\n\n</body>\n</html>\n``` \n\nIn this example, when the button is clicked, the `myFunction()` function is triggered, which creates an alert box with the message "Hello! This is an alert box!".',
+    // _id: '66758d7d1efed38e8ef7de58',
   },
   {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'user',
-    content: 'Lakel: Where is this race?',
+    content: 'an other example of Typescript?',
+    // _id: '667591761efed38e8ef7de6f',
   },
   {
-    role: 'assistant',
-    content: 'This race is taking place at Laguna Seca, Lakel.',
-  },
-  {
-    role: 'user',
-    content: 'Kruvinas: hey I just got here, whats going on?',
-  },
-  {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'assistant',
     content:
-      'Hey Kruvinas, Kris is about to start the ProMazda race at Laguna Seca.',
+      "Sure, here is another example of TypeScript code:\n\n```typescript\n// Define a class named 'Person'\nclass Person {\n  private name: string;\n  private age: number;\n\n  constructor(name: string, age: number) {\n    this.name = name;\n    this.age = age;\n  }\n\n  sayHello() {\n    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);\n  }\n}\n\n// Create a new instance of the 'Person' class\nconst person1 = new Person('John', 30);\n\n// Call the 'sayHello' method on the 'person1' instance\nperson1.sayHello();\n```\n\nIn this example, we define a class named 'Person' with private properties 'name' and 'age'. We create a constructor method to instantiate the class with a name and age. We also define a method 'sayHello' to log a message with the person's name and age. Finally, we create a new instance of the 'Person' class, call the 'sayHello' method on the instance, and output the message to the console.",
+    // _id: '6675917d1efed38e8ef7de70',
   },
   {
-    role: 'system',
-    content:
-      'The race ended and now we are racing Lotus 79 cars at Summit Point',
-  },
-  {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'user',
-    content: 'Lakel: Where are we now?',
+    content: "Peux tu m'expliquer qui était l'écrivaine Anne Pons ?",
+    // _id: '667594711efed38e8ef7de81',
   },
   {
-    role: 'assistant',
-    content: 'We are currently racing Lotus 79 cars at Summit Point, Lakel.',
-  },
-  {
-    role: 'user',
-    content: 'QTBear: what has Lakel been asking about?',
-  },
-  {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'assistant',
     content:
-      'Lakel was asking about the location of the ProMazda race that Kris was about to start and the current location of the race that they are currently participating in.',
+      'Anne Pons est une écrivaine française contemporaine, née en 1965. Elle est notamment connue pour ses romans et ses nouvelles qui explorent les thèmes de la famille, de la mémoire et de l\'identité. Ses oeuvres, souvent empreintes de mélancolie et de nostalgie, sont très appréciées pour leur style poétique et leur profondeur psychologique. Anne Pons a publié plusieurs ouvrages, parmi lesquels "Chapitres de l\'oubli" et "Les jours sans faille".',
+    // _id: '667594741efed38e8ef7de82',
   },
   {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'user',
-    content: 'QTBear: who are you?',
+    content: 'écris moi un example de code en Javascript',
+    // _id: '6675c1941efed38e8ef7deb5',
   },
   {
+    // id: '512d6734-691d-4bdb-b208-cc25d587bafc',
     role: 'assistant',
     content:
-      'I am PitGirl, a female race engineer who helps Kris Roberts, a sim racer on the iRacing service and Twitch streamer known as @Robertsmania. My job is to assist Kris in any way possible during his races.',
-  },
-  {
-    role: 'user',
-    content: 'Lakel: What is iRacing and can you use VR with it?',
+      "Bien sûr ! Voici un exemple de code en JavaScript qui affiche un message d'alerte lorsque la page est chargée :\n\n```javascript\ndocument.addEventListener('DOMContentLoaded', function() {\n  alert('Bonjour, bienvenue sur notre site !');\n});\n```\n\nCe code écoute l'événement `DOMContentLoaded` (qui est déclenché lorsque la page est entièrement chargée) et affiche ensuite une alerte avec le message \"Bonjour, bienvenue sur notre site !\".",
+    // _id: '6675c1961efed38e8ef7deb6',
   },
 ];
 
 export const Chat = ({}) => {
   const auth = useAuth();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [chats, setChats] = useState<Message[]>([testMessages]);
+  const [chats, setChats] = useState<Message[]>(testMessages);
 
   const handleSubmit = async () => {
     const content = inputRef.current?.value as string;
-    console.log('🚀 ~ handleSubmit ~ content:', content);
 
     if (inputRef && inputRef.current) {
       inputRef.current.value = '';
@@ -199,6 +188,7 @@ export const Chat = ({}) => {
             borderRadius: 3,
             mx: 'auto',
             display: 'flex',
+            textAlign: 'justify',
             flexDirection: 'column',
             overflow: 'scroll',
             overflowX: 'hidden',
