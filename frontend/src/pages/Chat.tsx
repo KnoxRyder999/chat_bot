@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, IconButton, Typography } from '@mui/material';
-import { grey, red } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 import { useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
 import { ChatItem } from '../components/ChatItem';
@@ -120,7 +120,7 @@ export const Chat = ({}) => {
             display: 'flex',
             width: '100%',
             height: '100vh',
-            bgcolor: grey[900],
+            bgcolor: 'transparent',
             flexDirection: 'column',
             mx: 3,
             margin: 0,
@@ -184,7 +184,7 @@ export const Chat = ({}) => {
         <Box
           sx={{
             width: '100%',
-            height: '60vh',
+            height: '80vh',
             borderRadius: 3,
             mx: 'auto',
             display: 'flex',

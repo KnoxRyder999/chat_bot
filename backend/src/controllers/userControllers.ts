@@ -23,14 +23,15 @@ export const getAllUsers = async (
 export const userSignup = async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
-    const existingUser = User.findOne({ email });
-    if (existingUser) return res.status(401).send('User already registered');
+    console.log('🚀 ~ userSignup ~ email:', await User.findOne({ email }));
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
+      return res.status(401).send("Can't sign up, User already registered");
     const hashedPassword = await hash(password, 10);
     const user = new User({ name, email, password: hashedPassword });
-    user.save();
+    await user.save();
 
     // create token and store cookie
-
     res.clearCookie(COOKIE_NAME, {
       path: '/',
       domain: 'localhost',
@@ -66,6 +67,7 @@ export const userSignup = async (req: Request, res: Response) => {
 export const userLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
+    console.log('🚀 ~ userLogin ~ email:', email);
     const user = await User.findOne({ email });
     if (!user) return res.status(401).send('User not registered');
     const isPasswordCorrect = await compare(password, user.password);

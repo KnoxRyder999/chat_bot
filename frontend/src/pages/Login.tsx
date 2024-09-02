@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material';
-import { FC, FormEvent, useEffect } from 'react';
+import { FormEvent, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { CiLogin } from 'react-icons/ci';
 import { useNavigate } from 'react-router-dom';
@@ -7,9 +7,7 @@ import { InputForm } from '../components/shared/InputForm';
 import { useAuth } from '../context/AuthContext';
 import robot from '/robot.svg';
 
-interface LoginProps {}
-
-export const Login: FC<LoginProps> = () => {
+export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
