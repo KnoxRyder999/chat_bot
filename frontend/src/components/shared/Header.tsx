@@ -2,9 +2,9 @@ import { AppBar, Toolbar } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { Logo } from './shared/Logo';
-import { NavigationLink } from './shared/NavigationLink';
+import { useAuth } from '../../context/AuthContext';
+import { Logo } from './Logo';
+import { NavigationLink } from './NavigationLink';
 
 interface HeaderProps {}
 
@@ -14,7 +14,7 @@ export const Header: FC<HeaderProps> = ({}) => {
 
   const auth = useAuth();
   return (
-    <AppBar sx={{ bgcolor: 'darkblue' }}>
+    <AppBar sx={{ bgcolor: theme.palette.primary.main }}>
       <Toolbar>
         <Logo />
         <div>

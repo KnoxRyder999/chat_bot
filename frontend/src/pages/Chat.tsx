@@ -210,6 +210,7 @@ export const Chat = ({}) => {
           }}
         >
           <input
+            placeholder='enter your new question here'
             ref={inputRef}
             type='text'
             style={{

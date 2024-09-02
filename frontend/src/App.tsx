@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Header } from './components/Header';
+import { Header } from './components/shared/Header';
 import { useAuth } from './context/AuthContext';
 import { Chat } from './pages/Chat';
 import { Home } from './pages/Home';
