@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    // "module": "NodeNext",
+    "module": "ES2015",
+    // "moduleResolution": "NodeNext",
+    "moduleResolution": "Bundler",
     "target": "ES2022",
     "sourceMap": true,
     "outDir": "dist",
