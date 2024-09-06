@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     // "module": "NodeNext",
-    "module": "ES2015",
     // "moduleResolution": "NodeNext",
+    "module": "ES2020",
     "moduleResolution": "Bundler",
     "target": "ES2022",
     "sourceMap": true,
     "outDir": "dist",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.ts", "src/index.ts"]
+  "include": ["src/**/*", "src/index"]
 }
