@@ -5,6 +5,16 @@ import express from 'express';
 import morgan from 'morgan';
 import appRouter from './routes/index.js';
 
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+
+// Resolving dirname for ES module
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// console.log('🚀 ~ __dirname:', __dirname);
+// const clientPath = path.join(__dirname, '/frontend');
+// console.log('🚀 ~ clientPath:', clientPath);
+
 config();
 const app = express();
 
