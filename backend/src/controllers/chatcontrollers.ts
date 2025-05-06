@@ -4,7 +4,10 @@ import { ChatCompletionUserMessageParam } from 'openai/resources/index.mjs';
 import { configureOpenAI } from '../config/openaiConfig.js';
 import User from '../models/User.js';
 
-export const generateChatCompletion = async (req: Request, res: Response) => {
+export const generateChatCompletion = async (
+  req: Request,
+  res: Response
+): Promise<Response | void> => {
   const { message } = req.body;
 
   try {

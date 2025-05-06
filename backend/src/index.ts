@@ -7,6 +7,15 @@ const PORT = process.env.PORT || 5000;
 connectToDatabase()
   .then(() => {
     console.log('port number:', PORT);
-    app.listen(5000, () => console.log('Server open and connected to DB 🤟'));
+    app.listen(PORT, () =>
+      console.log(
+        `Server open and connected to DB 🤟, on http://localhost:${PORT}`
+      )
+    );
   })
-  .catch((err) => console.log('😱 ~ err:', err));
+  .catch((err) =>
+    console.error(
+      '❌ Failed to start server due to MongoDB connection issue:',
+      err
+    )
+  );
