@@ -6,6 +6,7 @@ import {
   userSignup,
   verifyUser,
 } from '../controllers/userControllers.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 import { verifyToken } from '../utils/tokenManager.js';
 import {
   loginValidation,
@@ -15,10 +16,14 @@ import {
 
 const userRoutes = Router();
 
-userRoutes.get('/', getAllUsers);
-userRoutes.post('/signup', validate(signupValidator), userSignup);
-userRoutes.post('/login', validate(loginValidation), userLogin);
-userRoutes.get('/auth-status', verifyToken, verifyUser);
-userRoutes.get('/logout', verifyToken, userLogout);
+userRoutes.get('/', asyncHandler(getAllUsers));
+userRoutes.post('/signup', validate(signupValidator), asyncHandler(userSignup));
+userRoutes.post('/login', validate(loginValidation), asyncHandler(userLogin));
+userRoutes.get(
+  '/auth-status',
+  asyncHandler(verifyToken),
+  asyncHandler(verifyUser)
+);
+userRoutes.get('/logout', asyncHandler(verifyToken), asyncHandler(userLogout));
 
 export default userRoutes;
